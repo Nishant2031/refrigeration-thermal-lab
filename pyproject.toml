@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thermal-cycle-hx"
+version = "1.2.0"
+description = "Verified vapor-compression cycle and heat-exchanger teaching model"
+requires-python = ">=3.10"
+dependencies = [
+  "CoolProp>=6.6,<9",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "matplotlib>=3.7",
+  "streamlit>=1.40",
+  "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-cov>=4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
