@@ -3,15 +3,15 @@
 [![tests](https://github.com/Nishant2031/refrigeration-thermal-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/Nishant2031/refrigeration-thermal-lab/actions/workflows/tests.yml)
 
 
-A steady-state vapor-compression refrigeration model in Python. It predicts **where a real system operates**: given heat-exchanger sizes (UA) and source/sink conditions, it solves for the evaporating and condensing temperatures, capacity, and COP. It also sizes evaporators and calibrates against manufacturer compressor data. All properties come from [CoolProp](http://www.coolprop.org/).
+A steady-state vapor-compression refrigeration model in Python. It predicts *where a real system operates*: given heat-exchanger sizes (UA) and source/sink conditions, it solves for the evaporating and condensing temperatures, capacity, and COP. It also sizes evaporators and calibrates against manufacturer compressor data. All properties come from [CoolProp](http://www.coolprop.org/).
 
 ![Coupled solver](docs/images/coupled_solver.png)
 
 ## Highlights
 
-- **Coupled cycle solver.** A discretised (moving-boundary) evaporator and condenser handle superheat, two-phase, and subcooled zones. The solver finds the saturation temperatures at which the UA each exchanger *needs* equals the UA it *has*. A bracketed fallback handles hard cases, and physically impossible inputs get a specific explanation instead of a crash.
-- **Checked against manufacturer data.** Against all 57 points of the Copeland ZR34K3E-TFD (R407C) datasheet, the model reproduces published refrigerant **mass flow within 0.14 %** (worst 0.40 %) and **isentropic efficiency within 0.09 points**. Neither quantity is a model input. [Details](docs/VALIDATION.md)
-- **Compressor-map closure.** Imports a manufacturer map, fits it with a held-out validation split (0.7 % capacity error on unseen points), and corrects from the map's rating superheat/subcooling to the actual operating conditions. It never extrapolates outside the map's envelope.
+- *Coupled cycle solver.* A discretised (moving-boundary) evaporator and condenser handle superheat, two-phase, and subcooled zones. The solver finds the saturation temperatures at which the UA each exchanger *needs* equals the UA it *has*. A bracketed fallback handles hard cases, and physically impossible inputs get a specific explanation instead of a crash.
+- *Checked against manufacturer data.* Against all 57 points of the Copeland ZR34K3E-TFD (R407C) datasheet, the model reproduces published refrigerant *mass flow within 0.14 %* (worst 0.40 %) and *isentropic efficiency within 0.09 points**. Neither quantity is a model input. [Details](docs/VALIDATION.md)
+- *Compressor-map closure.* Imports a manufacturer map, fits it with a held-out validation split (0.7 % capacity error on unseen points), and corrects from the map's rating superheat/subcooling to the actual operating conditions. It never extrapolates outside the map's envelope.
 - **Design sweeps.** Re-solve the whole system while varying one parameter, to see trade-offs such as the diminishing return from a larger evaporator.
 - **Heat-exchanger tools.** Cooling load, ε-NTU screening, a tube-bundle thermal-resistance network, and a plate-evaporator secondary side (parallel-plate laminar Nu, Gnielinski turbulent).
 - **Data checks.** Compressor maps that would beat the Carnot limit are rejected (this catches Btu/h data mislabelled as W, which happened in this project).
