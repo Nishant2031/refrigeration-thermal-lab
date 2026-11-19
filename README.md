@@ -2,7 +2,6 @@
 
 [![tests](https://github.com/Nishant2031/refrigeration-thermal-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/Nishant2031/refrigeration-thermal-lab/actions/workflows/tests.yml)
 
-**Live demo:** _add your Streamlit Community Cloud link here after deploying (see "Deploy" below)_
 
 A steady-state vapor-compression refrigeration model in Python. It predicts **where a real system operates**: given heat-exchanger sizes (UA) and source/sink conditions, it solves for the evaporating and condensing temperatures, capacity, and COP. It also sizes evaporators and calibrates against manufacturer compressor data. All properties come from [CoolProp](http://www.coolprop.org/).
 
